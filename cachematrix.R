@@ -1,4 +1,8 @@
-## Put comments here that give an overall description of what your
+############################################################
+##Steven Wang's Lexical Scoping Assignment
+##Date: 19th Jun 2014
+############################################################
+
 ## functions do
 
 ## Write a short comment describing this function
