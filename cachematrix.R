@@ -3,6 +3,8 @@
 ##Date: 19th Jun 2014
 ############################################################
 
+# cache the matrix if there was an inverse matrix there for the input matrix
+
 makeCacheMatrix <- function(x = matrix()) 
 {
         m <- NULL		# do not assign anything to m (using cached value if any)
@@ -12,7 +14,7 @@ makeCacheMatrix <- function(x = matrix())
                 m <<- NULL		# Invalidate the cached matrix				
         }
         get <- function() { x }
-        setInverse <- function (solve)	m <<- solve
+        setInverse <- function (func)	m <<- func
         getInverse <- function() m
         list	(	set = set
                , get = get
@@ -21,12 +23,13 @@ makeCacheMatrix <- function(x = matrix())
         )				
 }
 
-## Write a short comment describing this function
+## if there is a cached inverse matrix available then simply get the inverse matrix from cache
+## if it is calculating inverse matrix for a new matrix, then perform the new calculation.
 
 cacheSolve <- function(x, ...) 
 {
         ## Return a matrix that is the inverse of 'x'
-        m <- x$getInverse
+        m <- x$getInverse()
         if (!is.null(m))
         {
                 message("Getting the inverse matrix from cache")
